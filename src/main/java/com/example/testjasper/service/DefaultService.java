@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.testjasper.model.dto.DefaultDto;
@@ -26,6 +27,9 @@ import java.io.IOException;
 
 @Service
 public class DefaultService {
+
+    @Autowired
+    private RelatorioService relatorioService;
     
     public List<DefaultDto> findAll(){
         return List.of(
@@ -47,34 +51,8 @@ public class DefaultService {
     }
 
     public void export(HttpServletResponse response){
-        var list = findAll();
-
-        var collectionDataSource = new JRBeanCollectionDataSource(list);
-
-        try {
-
-        var inputStream = JRLoader.getLocationInputStream("src/main/resources/static/templates/jasper/Blank_A4.jrxml");
-
-        var loadInputStream = JRXmlLoader.load(inputStream);
-
-        var jasper = JasperCompileManager.compileReport(loadInputStream);
-
-        var print = JasperFillManager.fillReport(jasper, new HashMap<>(), collectionDataSource);
-
-        response.setHeader("Content-Disposition", "attachment;filename=teste.xlsx");
-        response.setContentType("application/octet-stream");
-
-        var exporter =  new JRXlsxExporter();
-
-        exporter.setConfiguration(getConfiguration());
-        exporter.setExporterInput(new SimpleExporterInput(print));
-        exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(response.getOutputStream()));
-        exporter.exportReport();
-
-        } catch (JRException | IOException e) {
-            throw new RuntimeException(e.getMessage());
-        }
-
+        List<DefaultDto> list = findAll();
+        relatorioService.exportXLSX(list, new HashMap<>(), "/static/templates/jasper/Blank_A4.jasper", response);
     }
 
     private SimpleXlsxReportConfiguration getConfiguration() {
