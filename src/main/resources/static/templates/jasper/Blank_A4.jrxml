@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b61c5c73-6ad1-4cf8-8908-fea491b736e3">
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="tituloGeral" class="java.lang.String"/>
+	<field name="objetos" class="java.util.Collection"/>
+	<background>
+		<band splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+		</band>
+	</background>
+	<title>
+		<band height="50">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<staticText>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="70" forecolor="#030303" backcolor="#8F8F8F" uuid="0044ddfd-0c9e-492e-9d55-4fefc41439a0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[Lista de Objetos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="200">
+			<textField>
+				<reportElement mode="Opaque" x="-20" y="0" width="595" height="30" backcolor="#FFA7A6" uuid="fec769e8-10b5-4f70-becd-40531c050bab"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tituloGeral}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="-20" y="30" width="200" height="30" backcolor="#5761F7" uuid="97637d87-81c7-47b9-ae92-84eaa966c35d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Título]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="180" y="30" width="200" height="30" backcolor="#31F562" uuid="34c6536a-e500-4759-a03c-b0204e9f9d2d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="380" y="30" width="195" height="30" backcolor="#F1FA41" uuid="14e49faf-2c57-4aa3-a197-7301640374c7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Data de Criação]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="-20" y="60" width="595" height="28" uuid="5e7a00e5-b8bf-4904-b8a5-9f888daea9e4">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{objetos})]]></dataSourceExpression>
+				<subreportExpression><![CDATA["Blank_A4_1.jasper"]]></subreportExpression>
+			</subreport>
+			<rectangle>
+				<reportElement mode="Transparent" x="-20" y="90" width="595" height="20" uuid="22b94fcc-6136-4f18-97d6-cdacb28f6168">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.0"/>
+				</graphicElement>
+			</rectangle>
+		</band>
+	</detail>
+</jasperReport>
